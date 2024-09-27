@@ -3,11 +3,7 @@
       "id": 1,
       "name": "Casual T-Shirt",
       "price": 19.99,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://m.media-amazon.com/images/I/612hZ7aWQlL._SY741_.jpg",
->>>>>>> add-products
       "description": "A comfortable casual t-shirt.",
       "category": "T-Shirts",
       "size": ["S", "M", "L", "XL"],
@@ -20,11 +16,7 @@
       "id": 2,
       "name": "Denim Jacket",
       "price": 49.99,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://rukminim2.flixcart.com/image/832/832/xif0q/jacket/6/2/g/xl-mntnw-4024-montrez-original-imafg82gbevyfwwz-bb.jpeg?q=70&crop=false",
->>>>>>> add-products
       "description": "A stylish denim jacket.",
       "category": "Jackets",
       "size": ["M", "L", "XL"],
@@ -37,11 +29,7 @@
       "id": 3,
       "name": "Summer Dress",
       "price": 29.99,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://m.media-amazon.com/images/I/71trfTZhxfL._SY741_.jpg",
->>>>>>> add-products
       "description": "A beautiful summer dress.",
       "category": "Dresses",
       "size": ["S", "M", "L"],
@@ -54,11 +42,7 @@
       "id": 4,
       "name": "Sports Shorts",
       "price": 25.00,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://images.meesho.com/images/products/57962209/sosmf_1200.jpg",
->>>>>>> add-products
       "description": "Comfortable shorts for sports.",
       "category": "Shorts",
       "size": ["M", "L", "XL"],
@@ -71,11 +55,7 @@
       "id": 5,
       "name": "Formal Shirt",
       "price": 39.99,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://m.media-amazon.com/images/I/611zHsFaFIL._SY741_.jpg",
->>>>>>> add-products
       "description": "A formal shirt for office wear.",
       "category": "Shirts",
       "size": ["S", "M", "L"],
@@ -88,11 +68,7 @@
       "id": 6,
       "name": "Hooded Sweatshirt",
       "price": 45.00,
-<<<<<<< HEAD
-      "image": "https://via.placeholder.com/150",
-=======
       "image": "https://m.media-amazon.com/images/I/51W2xWPB9WL._SX679_.jpg",
->>>>>>> add-products
       "description": "A warm hoodie for chilly days.",
       "category": "Sweatshirts",
       "size": ["M", "L", "XL"],
@@ -103,67 +79,9 @@
     },
     {
       "id": 7,
-<<<<<<< HEAD
-      "name": "Athletic Shoes",
-      "price": 89.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "Comfortable shoes for running.",
-      "category": "Shoes",
-      "size": ["8", "9", "10"],
-      "color": ["Red", "Blue"],
-      "brand": "Brand G",
-      "rating": 4.8,
-      "stock": 20
-    },
-    {
-      "id": 8,
-      "name": "Leather Belt",
-      "price": 19.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "A durable leather belt.",
-      "category": "Accessories",
-      "size": ["One Size"],
-      "color": ["Black", "Brown"],
-      "brand": "Brand H",
-      "rating": 4.5,
-      "stock": 25
-    },
-    {
-      "id": 9,
-      "name": "Baseball Cap",
-      "price": 14.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "Stylish baseball cap.",
-      "category": "Hats",
-      "size": ["One Size"],
-      "color": ["Black", "White"],
-      "brand": "Brand I",
-      "rating": 4.3,
-      "stock": 30
-    },
-    {
-      "id": 10,
-      "name": "Winter Coat",
-      "price": 99.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "A warm winter coat.",
-      "category": "Coats",
-      "size": ["M", "L", "XL"],
-      "color": ["Navy", "Black"],
-      "brand": "Brand J",
-      "rating": 4.9,
-      "stock": 10
-    },
-    {
-      "id": 11,
-      "name": "Tank Top",
-      "price": 15.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "name": "Tank Top",
       "price": 15.99,
       "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS8PsbPzd_QZ8n9zidSxPf7N9KlubUjOqSMzwgWi_8P7ra3TfV3AC_8HcsUnzchiWfeKNqqalx4N1Y30b3iLaSUukX5u5CdtnEIFv3UKo_u-KW1DnDWT2UD",
->>>>>>> add-products
       "description": "Lightweight tank top.",
       "category": "T-Shirts",
       "size": ["S", "M", "L"],
@@ -173,17 +91,10 @@
       "stock": 18
     },
     {
-<<<<<<< HEAD
-      "id": 12,
-      "name": "Polo Shirt",
-      "price": 34.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 8,
       "name": "Polo Shirt",
       "price": 34.99,
       "image": "https://m.media-amazon.com/images/I/71x4rLhMkML._SY741_.jpg",
->>>>>>> add-products
       "description": "Casual polo shirt.",
       "category": "Shirts",
       "size": ["M", "L", "XL"],
@@ -193,17 +104,10 @@
       "stock": 14
     },
     {
-<<<<<<< HEAD
-      "id": 13,
-      "name": "Yoga Pants",
-      "price": 29.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 9,
       "name": "Yoga Pants",
       "price": 29.99,
       "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTYv5JMy-JKy9AhaAh8__DB9QQK7BEBMOf38Qt7BOYi0uMszQ9-9_Yg-tpgxEPv0NX2O_lKSAi9lwkzGYNfSpWiGQMn8jqsHtajulRS9xP_6blceDQy7hx9",
->>>>>>> add-products
       "description": "Comfortable yoga pants.",
       "category": "Pants",
       "size": ["S", "M", "L"],
@@ -213,43 +117,10 @@
       "stock": 16
     },
     {
-<<<<<<< HEAD
-      "id": 14,
-      "name": "Sunglasses",
-      "price": 19.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "Stylish sunglasses.",
-      "category": "Accessories",
-      "size": ["One Size"],
-      "color": ["Black"],
-      "brand": "Brand N",
-      "rating": 4.3,
-      "stock": 22
-    },
-    {
-      "id": 15,
-      "name": "Flip Flops",
-      "price": 12.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "Comfortable flip flops.",
-      "category": "Footwear",
-      "size": ["S", "M", "L"],
-      "color": ["Blue", "Pink"],
-      "brand": "Brand O",
-      "rating": 4.1,
-      "stock": 40
-    },
-    {
-      "id": 16,
-      "name": "Cargo Shorts",
-      "price": 34.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 10,
       "name": "Cargo Shorts",
       "price": 34.99,
       "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRi_mhFBWCh3sVV67swnpQ_l4l1ap-vy2cwFiCehM9Lgr0pBrLfoKdjql9qjcUhSH9mkGSBTIEjZW9SHodlg9lT_RoF-MndkPA562thWsxk278HsarOOYWe",
->>>>>>> add-products
       "description": "Durable cargo shorts.",
       "category": "Shorts",
       "size": ["M", "L", "XL"],
@@ -259,17 +130,10 @@
       "stock": 13
     },
     {
-<<<<<<< HEAD
-      "id": 17,
-      "name": "Wool Sweater",
-      "price": 59.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 11,
       "name": "Wool Sweater",
       "price": 59.99,
       "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRVQ3x-etEvTwqIE_NVbJpZLYWJhGo5RfYwi8Wb57a2OIKkwoMxlVrDJRbAqG4LLQjOb9BlN0_3QbuylNck5YbbyxqX5Q4kk1fDAF_qV5BE7jLHuRQMRohk",
->>>>>>> add-products
       "description": "Warm wool sweater.",
       "category": "Sweaters",
       "size": ["M", "L"],
@@ -279,17 +143,10 @@
       "stock": 8
     },
     {
-<<<<<<< HEAD
-      "id": 18,
-      "name": "Skirt",
-      "price": 24.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 12,
       "name": "Skirt",
       "price": 24.99,
       "image": "https://m.media-amazon.com/images/I/51uhMp6TyrL._SY741_.jpg",
->>>>>>> add-products
       "description": "Stylish skirt.",
       "category": "Dresses",
       "size": ["S", "M", "L"],
@@ -299,17 +156,10 @@
       "stock": 10
     },
     {
-<<<<<<< HEAD
-      "id": 19,
-      "name": "Overalls",
-      "price": 49.99,
-      "image": "https://via.placeholder.com/150",
-=======
       "id": 13,
       "name": "Overalls",
       "price": 49.99,
       "image": "https://m.media-amazon.com/images/I/31aGblh9mzL.jpg",
->>>>>>> add-products
       "description": "Fashionable overalls.",
       "category": "Pants",
       "size": ["M", "L"],
@@ -319,22 +169,6 @@
       "stock": 9
     },
     {
-<<<<<<< HEAD
-      "id": 20,
-      "name": "Bikini",
-      "price": 29.99,
-      "image": "https://via.placeholder.com/150",
-      "description": "Stylish bikini for summer.",
-      "category": "Swimwear",
-      "size": ["S", "M"],
-      "color": ["Pink", "Blue"],
-      "brand": "Brand T",
-      "rating": 4.5,
-      "stock": 20
-    }
-  ]
-  
-=======
       "id": 14,
       "name": "Floral Maxi Dress",
       "price": 55.99,
@@ -439,4 +273,3 @@
       "stock": 8
     }
 ]
->>>>>>> add-products
