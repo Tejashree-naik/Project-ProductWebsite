@@ -1,0 +1,73 @@
+/* Center the login form vertically and horizontally */
+.login-container {
+  display: flex;
+  flex-direction: column; /* Stack heading and form */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9fafc; /* Light background color */
+}
+
+/* Heading styling */
+.login-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px; /* Space between heading and form fields */
+  color: #333;
+  text-align: center; /* Center the heading */
+}
+
+/* Styling for the form */
+.ant-form {
+  background-color: #fff; /* White background for the form */
+  padding: 24px; /* Reduced padding */
+  border-radius: 8px; /* Slightly smaller border radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  width: 100%;
+  max-width: 400px; /* Decreased maximum width */
+}
+
+/* Input fields styling */
+.ant-input,
+.ant-input-password {
+  border-radius: 4px;
+  margin-bottom: 12px; /* Reduced margin between input fields */
+  padding: 8px; /* Reduced padding for input fields */
+  font-size: 14px; /* Slightly smaller font size */
+}
+
+.ant-input:focus,
+.ant-input-password:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.2);
+}
+
+/* Label styling */
+.ant-form-item-label > label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Button styling */
+.ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  border-radius: 4px;
+  width: 100%; /* Full-width button */
+  height: 36px; /* Slightly smaller button height */
+  font-weight: 500;
+}
+
+.ant-btn-primary:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+/* Responsiveness for mobile devices */
+@media (max-width: 768px) {
+  .ant-form {
+    padding: 16px; /* Further reduce padding on smaller screens */
+    max-width: 100%; /* Full width on smaller screens */
+  }
+}

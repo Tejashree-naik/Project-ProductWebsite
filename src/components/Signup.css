@@ -1,0 +1,73 @@
+/* Center the signup form vertically and horizontally */
+.signup-container {
+  display: flex;
+  flex-direction: column; /* Stack heading and form */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9fafc; /* Light background color */
+}
+
+/* Heading styling */
+.signup-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px; /* Space between heading and form */
+  color: #333;
+  text-align: center; /* Center the heading */
+}
+
+/* Styling for the form */
+.ant-form {
+  background-color: #fff; /* White background for the form */
+  padding: 24px; /* Padding around the form */
+  border-radius: 8px; /* Border radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  width: 100%;
+  max-width: 400px; /* Set max width for the form */
+}
+
+/* Input fields styling */
+.ant-input,
+.ant-input-password {
+  border-radius: 4px;
+  margin-bottom: 12px; /* Margin between input fields */
+  padding: 8px; /* Padding for input fields */
+  font-size: 14px; /* Font size for input fields */
+}
+
+.ant-input:focus,
+.ant-input-password:focus {
+  border-color: #1890ff; /* Border color on focus */
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.2); /* Shadow on focus */
+}
+
+/* Label styling */
+.ant-form-item-label > label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Button styling */
+.ant-btn-primary {
+  background-color: #1890ff; /* Button background color */
+  border-color: #1890ff; /* Button border color */
+  border-radius: 4px; /* Button border radius */
+  width: 100%; /* Full-width button */
+  height: 36px; /* Button height */
+  font-weight: 500; /* Button font weight */
+}
+
+.ant-btn-primary:hover {
+  background-color: #40a9ff; /* Hover background color */
+  border-color: #40a9ff; /* Hover border color */
+}
+
+/* Responsiveness for mobile devices */
+@media (max-width: 768px) {
+  .ant-form {
+    padding: 16px; /* Reduce padding on smaller screens */
+    max-width: 100%; /* Full width on smaller screens */
+  }
+}

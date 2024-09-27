@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, message } from "antd";
+import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,82 +28,77 @@ const Login = () => {
   };
 
   return (
-    <Form
-      form={form}
-      name="login"
-      initialValues={{
-        remember: true,
-      }}
-      style={{
-        maxWidth: 360,
-        margin: "auto", // Center the form horizontally
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
+    <div className="login-container">
+      <Form
+        form={form}
+        name="login"
+        initialValues={{
+          remember: true,
+        }}
+        style={{
+          maxWidth: 360,
+          margin: "auto", // Center the form horizontally
+        }}
+        onFinish={onFinish}
       >
-        <Input prefix={<UserOutlined />} placeholder="E-mail" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+        <h2 className="login-heading">Login</h2>{" "}
+        {/* Add heading inside the form */}
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
         >
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
+          <Input prefix={<UserOutlined />} placeholder="E-mail" />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Password!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<LockOutlined />}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Item>
+        <Form.Item>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+          </div>
+        </Form.Item>
+        <Form.Item>
+          <Button block type="primary" htmlType="submit">
+            Log in
+          </Button>
+          or{" "}
           <Button
             type="link"
             onClick={(e) => {
-              e.preventDefault(); // Handle forgot password
+              e.preventDefault();
+              navigate("/signup"); // Navigate to the signup page
             }}
           >
-            Forgot password
+            Register now!
           </Button>
-        </div>
-      </Form.Item>
-
-      <Form.Item>
-        <Button block type="primary" htmlType="submit">
-          Log in
-        </Button>
-        or{" "}
-        <Button
-          type="link"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/signup"); // Navigate to the signup page
-          }}
-        >
-          Register now!
-        </Button>
-      </Form.Item>
-    </Form>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
