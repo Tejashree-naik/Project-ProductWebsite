@@ -21,6 +21,9 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [orderedItems, setOrderedItems] = useState([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const [isOrderVisible, setIsOrderVisible] = useState(false);
 
   if (!productsData || Object.keys(productsData).length === 0) {
     return (
@@ -81,6 +84,30 @@ const ProductPage = () => {
     }
   };
 
+  const handleBuyNow = (item) => {
+    setOrderedItems((prevItems) => [...prevItems, item]);
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.id !== item.id)
+    );
+    alert(`${item.name} has been ordered!`);
+  };
+
+  const handleCartClick = () => {
+    setIsCartVisible(true);
+  };
+
+  const handleCartClose = () => {
+    setIsCartVisible(false);
+  };
+
+  const handleOrderClick = () => {
+    setIsOrderVisible(true);
+  };
+
+  const handleOrderClose = () => {
+    setIsOrderVisible(false);
+  };
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header className="header">
@@ -114,7 +141,21 @@ const ProductPage = () => {
             </Menu.Item>
           </Menu>
 
-          <CartItems cartItems={cartItems} />
+          <Button
+            type="primary"
+            className="view-cart-button"
+            onClick={handleCartClick}
+          >
+            View Cart
+          </Button>
+
+          <Button
+            type="primary"
+            className="view-orders-button"
+            onClick={handleOrderClick}
+          >
+            View Orders
+          </Button>
         </Sider>
 
         <Layout style={{ padding: "20px" }}>
@@ -142,32 +183,22 @@ const ProductPage = () => {
         selectedSize={selectedSize}
         selectedColor={selectedColor}
       />
+
+      <CartModal
+        visible={isCartVisible}
+        onClose={handleCartClose}
+        cartItems={cartItems}
+        onBuyNow={handleBuyNow}
+      />
+
+      <OrderModal
+        visible={isOrderVisible}
+        onClose={handleOrderClose}
+        orderedItems={orderedItems}
+      />
     </Layout>
   );
 };
-
-// Component for displaying cart items
-const CartItems = ({ cartItems }) => (
-  <div className="cart-items">
-    <h3>Cart Items</h3>
-    {cartItems.length > 0 ? (
-      <Menu mode="inline" className="cart-menu">
-        {cartItems.map((item, index) => (
-          <Menu.Item key={index} className="cart-item">
-            <span>
-              <strong>{item.name}</strong>
-              <br />
-              Size: {item.selectedSize}, Color: {item.selectedColor}
-            </span>
-            <span className="cart-price">${item.price.toFixed(2)}</span>
-          </Menu.Item>
-        ))}
-      </Menu>
-    ) : (
-      <p>No items in the cart</p>
-    )}
-  </div>
-);
 
 // Component for displaying individual product cards
 const ProductCard = ({ product, onClick }) => (
@@ -241,16 +272,9 @@ const ProductModal = ({
 
         {/* Additional product details */}
         <p>
-          <strong>Brand:</strong> {selectedProduct.brand}
-        </p>
-        <p>
           <strong>Rating:</strong> {selectedProduct.rating} ⭐
         </p>
-        <p>
-          <strong>Stock:</strong> {selectedProduct.stock} available
-        </p>
 
-        {/* Add to Cart Button */}
         <Button
           type="primary"
           onClick={onAddToCart}
@@ -263,16 +287,78 @@ const ProductModal = ({
   </Modal>
 );
 
-// Component for selecting sizes
+// Component for displaying cart items in a modal
+const CartModal = ({ visible, onClose, cartItems, onBuyNow }) => (
+  <Modal
+    title="Your Cart"
+    visible={visible}
+    onCancel={onClose}
+    footer={null}
+    width={700}
+    className="cart-modal"
+  >
+    {cartItems.length > 0 ? (
+      cartItems.map((item, index) => (
+        <div key={index} className="cart-item-detail">
+          <img src={item.image} alt={item.name} className="cart-item-image" />
+          <div className="cart-item-info">
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+            <p>Price: ${item.price.toFixed(2)}</p>
+            <p>Size: {item.selectedSize}</p>
+            <p>Color: {item.selectedColor}</p>
+            <p>Rating: {item.rating} ⭐</p>
+            <Button type="primary" onClick={() => onBuyNow(item)}>
+              Buy Now
+            </Button>
+          </div>
+        </div>
+      ))
+    ) : (
+      <p>No items in your cart</p>
+    )}
+  </Modal>
+);
+
+// Component for displaying order modal
+const OrderModal = ({ visible, onClose, orderedItems }) => (
+  <Modal
+    title="Your Orders"
+    visible={visible}
+    onCancel={onClose}
+    footer={null}
+    width={700}
+    className="order-modal"
+  >
+    {orderedItems.length > 0 ? (
+      orderedItems.map((item, index) => (
+        <div key={index} className="order-item-detail">
+          <img src={item.image} alt={item.name} className="order-item-image" />
+          <div className="order-item-info">
+            <h3>{item.name}</h3>
+            <p>Price: ${item.price.toFixed(2)}</p>
+            <p>Size: {item.selectedSize}</p>
+            <p>Color: {item.selectedColor}</p>
+            <p>Rating: {item.rating} ⭐</p>
+          </div>
+        </div>
+      ))
+    ) : (
+      <p>No items ordered yet</p>
+    )}
+  </Modal>
+);
+
+// Size selection component
 const SizeSelection = ({ sizes, selectedSize, setSelectedSize }) => (
-  <div className="size-selection">
-    <strong>Select Size:</strong>
-    <div>
-      {sizes.map((size) => (
+  <div>
+    <strong>Size:</strong>
+    <div className="size-selection">
+      {sizes.map((size, index) => (
         <Button
-          key={size}
+          key={index}
+          type={selectedSize === size ? "primary" : "default"}
           onClick={() => setSelectedSize(size)}
-          className={`size-button ${selectedSize === size ? "active" : ""}`}
         >
           {size}
         </Button>
@@ -281,17 +367,16 @@ const SizeSelection = ({ sizes, selectedSize, setSelectedSize }) => (
   </div>
 );
 
-// Component for selecting colors
+// Color selection component
 const ColorSelection = ({ colors, selectedColor, setSelectedColor }) => (
-  <div className="color-selection">
-    <strong>Select Color:</strong>
-    <div>
-      {colors.map((color) => (
+  <div>
+    <strong>Color:</strong>
+    <div className="color-selection">
+      {colors.map((color, index) => (
         <Button
-          key={color}
+          key={index}
+          type={selectedColor === color ? "primary" : "default"}
           onClick={() => setSelectedColor(color)}
-          className={`color-button ${selectedColor === color ? "active" : ""}`}
-          style={{ backgroundColor: color }}
         >
           {color}
         </Button>
