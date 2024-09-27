@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Row, Spin, Modal, Layout, Menu } from "antd";
+import { Card, Col, Row, Spin, Modal, Layout, Menu, Button } from "antd";
 import productsData from "../data/products.json"; // Adjust the import path if necessary
 
 const { Header, Content, Sider } = Layout;
@@ -7,6 +7,9 @@ const { Header, Content, Sider } = Layout;
 const ProductPage = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // State for the selected product
   const [selectedCategory, setSelectedCategory] = useState("all"); // State for the selected category
+  const [selectedSize, setSelectedSize] = useState(null); // State for selected size
+  const [selectedColor, setSelectedColor] = useState(null); // State for selected color
+  const [cartItems, setCartItems] = useState([]); // State for cart items
 
   // Show spinner if no product data
   if (!productsData || Object.keys(productsData).length === 0) {
@@ -36,11 +39,29 @@ const ProductPage = () => {
   // Function to handle product click
   const handleProductClick = (product) => {
     setSelectedProduct(product); // Set the clicked product as selected
+    setSelectedSize(null); // Reset selected size
+    setSelectedColor(null); // Reset selected color
   };
 
   // Function to handle modal close
   const handleModalClose = () => {
     setSelectedProduct(null); // Clear the selected product
+  };
+
+  // Function to handle adding to cart
+  const handleAddToCart = () => {
+    if (selectedSize && selectedColor) {
+      const newCartItem = {
+        ...selectedProduct,
+        selectedSize,
+        selectedColor,
+      };
+      setCartItems((prevItems) => [...prevItems, newCartItem]); // Add item to cart
+      alert(`${selectedProduct.name} has been added to your cart!`);
+      handleModalClose(); // Close modal after adding to cart
+    } else {
+      alert("Please select a size and color before adding to cart.");
+    }
   };
 
   return (
@@ -51,7 +72,7 @@ const ProductPage = () => {
         </h2>
       </Header>
       <Layout>
-        <Sider width={200} style={{ background: "#fff" }}>
+        <Sider width={300} style={{ background: "#fff" }}>
           <Menu
             mode="inline"
             defaultSelectedKeys={["all"]}
@@ -76,6 +97,27 @@ const ProductPage = () => {
               Kids
             </Menu.Item>
           </Menu>
+
+          {/* Display Cart Items */}
+          <div style={{ padding: "10px", borderTop: "1px solid #ccc" }}>
+            <h3>Cart Items</h3>
+            {cartItems.length > 0 ? (
+              <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+                {cartItems.map((item, index) => (
+                  <li key={index} style={{ marginBottom: "10px" }}>
+                    <strong>{item.name}</strong> <br />
+                    Size: {item.selectedSize}, Color: {item.selectedColor}{" "}
+                    <br />
+                    <span style={{ fontWeight: "bold" }}>
+                      ${item.price.toFixed(2)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No items in the cart</p>
+            )}
+          </div>
         </Sider>
         <Layout style={{ padding: "20px" }}>
           <Content>
@@ -127,12 +169,48 @@ const ProductPage = () => {
             <p>
               <strong>Category:</strong> {selectedProduct.category}
             </p>
-            <p>
-              <strong>Size:</strong> {selectedProduct.size.join(", ")}
-            </p>
-            <p>
-              <strong>Color:</strong> {selectedProduct.color.join(", ")}
-            </p>
+
+            {/* Size Selection */}
+            <div>
+              <strong>Select Size:</strong>
+              <div>
+                {selectedProduct.size.map((size) => (
+                  <Button
+                    key={size}
+                    onClick={() => setSelectedSize(size)} // Set selected size
+                    style={{
+                      margin: "5px",
+                      backgroundColor: selectedSize === size ? "#1890ff" : "",
+                      color: selectedSize === size ? "white" : "",
+                    }}
+                  >
+                    {size}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Color Selection */}
+            <div>
+              <strong>Select Color:</strong>
+              <div>
+                {selectedProduct.color.map((color) => (
+                  <Button
+                    key={color}
+                    onClick={() => setSelectedColor(color)} // Set selected color
+                    style={{
+                      margin: "5px",
+                      backgroundColor: selectedColor === color ? "#1890ff" : "",
+                      color: selectedColor === color ? "white" : "",
+                    }}
+                  >
+                    {color}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Display additional product details */}
             <p>
               <strong>Brand:</strong> {selectedProduct.brand}
             </p>
@@ -142,6 +220,15 @@ const ProductPage = () => {
             <p>
               <strong>Stock:</strong> {selectedProduct.stock} available
             </p>
+
+            {/* Add to Cart Button */}
+            <Button
+              type="primary"
+              onClick={handleAddToCart}
+              style={{ marginTop: "20px" }}
+            >
+              Add to Cart
+            </Button>
           </div>
         )}
       </Modal>
