@@ -45,7 +45,7 @@ const ProductPage = () => {
   const filteredProducts =
     selectedCategory === "all"
       ? allProducts
-      : productsData[selectedCategory] || [];
+      : productsData[selectedCategory] || []; // Ensure only selected category products are shown
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -108,6 +108,18 @@ const ProductPage = () => {
     setIsOrderVisible(false);
   };
 
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(
+        <span key={i} className="star">
+          {i < Math.round(rating) ? "⭐" : "☆"}
+        </span>
+      );
+    }
+    return stars;
+  };
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header className="header">
@@ -167,6 +179,7 @@ const ProductPage = () => {
                   <ProductCard
                     product={product}
                     onClick={() => handleProductClick(product)}
+                    renderStars={renderStars} // Pass renderStars function
                   />
                 </Col>
               ))}
@@ -202,7 +215,7 @@ const ProductPage = () => {
 };
 
 // Component for displaying individual product cards
-const ProductCard = ({ product, onClick }) => (
+const ProductCard = ({ product, onClick, renderStars }) => (
   <Card
     hoverable
     onClick={onClick}
@@ -214,7 +227,7 @@ const ProductCard = ({ product, onClick }) => (
     <h3 className="product-name">{product.name}</h3>
     <p className="product-price">${product.price.toFixed(2)}</p>
     <p className="product-description">{product.description}</p>
-    <p className="product-rating">Rating: {product.rating} ⭐</p>
+    <p className="product-rating">Rating: {renderStars(product.rating)}</p>
     <Divider />
     <Button type="primary" onClick={onClick}>
       View Details
@@ -299,40 +312,23 @@ const CartModal = ({ visible, onClose, cartItems, onBuyNow }) => (
     width={700}
     className="cart-modal"
   >
-    {cartItems.length > 0 ? (
-      cartItems.map((item, index) => (
-        <div
-          key={index}
-          className="cart-item"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <img
-            src={item.image}
-            alt={item.name}
-            className="cart-item-image"
-            style={{ width: "80px", height: "80px", marginRight: "20px" }}
-          />
-          <div className="cart-item-info">
-            <h3 className="cart-item-name">{item.name}</h3>
-            <p className="cart-item-price">${item.price.toFixed(2)}</p>
-            <p className="cart-item-size">Size: {item.selectedSize}</p>
-            <p className="cart-item-color">Color: {item.selectedColor}</p>
-            <Button
-              type="primary"
-              onClick={() => onBuyNow(item)}
-              className="buy-now-button"
-            >
+    {cartItems.length === 0 ? (
+      <p>Your cart is empty.</p>
+    ) : (
+      cartItems.map((item) => (
+        <div key={item.id} className="cart-item">
+          <img src={item.image} alt={item.name} className="cart-item-image" />
+          <div className="cart-item-details">
+            <h4>{item.name}</h4>
+            <p>Size: {item.selectedSize}</p>
+            <p>Color: {item.selectedColor}</p>
+            <p>${item.price.toFixed(2)}</p>
+            <Button type="primary" onClick={() => onBuyNow(item)}>
               Buy Now
             </Button>
           </div>
         </div>
       ))
-    ) : (
-      <p>Your cart is empty.</p>
     )}
   </Modal>
 );
@@ -347,33 +343,20 @@ const OrderModal = ({ visible, onClose, orderedItems }) => (
     width={700}
     className="order-modal"
   >
-    {orderedItems.length > 0 ? (
-      orderedItems.map((item, index) => (
-        <div
-          key={index}
-          className="order-item"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <img
-            src={item.image}
-            alt={item.name}
-            className="order-item-image"
-            style={{ width: "80px", height: "80px", marginRight: "20px" }}
-          />
-          <div className="order-item-info">
-            <h3 className="order-item-name">{item.name}</h3>
-            <p className="order-item-price">${item.price.toFixed(2)}</p>
-            <p className="order-item-size">Size: {item.selectedSize}</p>
-            <p className="order-item-color">Color: {item.selectedColor}</p>
+    {orderedItems.length === 0 ? (
+      <p>You have no orders.</p>
+    ) : (
+      orderedItems.map((item) => (
+        <div key={item.id} className="order-item">
+          <img src={item.image} alt={item.name} className="order-item-image" />
+          <div className="order-item-details">
+            <h4>{item.name}</h4>
+            <p>Size: {item.selectedSize}</p>
+            <p>Color: {item.selectedColor}</p>
+            <p>${item.price.toFixed(2)}</p>
           </div>
         </div>
       ))
-    ) : (
-      <p>You have no orders yet.</p>
     )}
   </Modal>
 );
@@ -381,12 +364,12 @@ const OrderModal = ({ visible, onClose, orderedItems }) => (
 // Component for selecting sizes
 const SizeSelection = ({ sizes, selectedSize, setSelectedSize }) => (
   <div className="size-selection">
-    <h4>Select Size:</h4>
+    <p>Select Size:</p>
     {sizes.map((size) => (
       <Button
         key={size}
+        type={selectedSize === size ? "primary" : "default"}
         onClick={() => setSelectedSize(size)}
-        className={`size-button ${selectedSize === size ? "active" : ""}`}
       >
         {size}
       </Button>
@@ -397,13 +380,13 @@ const SizeSelection = ({ sizes, selectedSize, setSelectedSize }) => (
 // Component for selecting colors
 const ColorSelection = ({ colors, selectedColor, setSelectedColor }) => (
   <div className="color-selection">
-    <h4>Select Color:</h4>
+    <p>Select Color:</p>
     {colors.map((color) => (
       <Button
         key={color}
+        type={selectedColor === color ? "primary" : "default"}
+        style={{ backgroundColor: color, borderColor: color }}
         onClick={() => setSelectedColor(color)}
-        className={`color-button ${selectedColor === color ? "active" : ""}`}
-        style={{ backgroundColor: color, color: "#fff" }}
       >
         {color}
       </Button>
