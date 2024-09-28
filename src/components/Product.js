@@ -145,6 +145,7 @@ const ProductPage = () => {
             type="primary"
             className="view-cart-button"
             onClick={handleCartClick}
+            style={{ marginBottom: "10px" }}
           >
             View Cart
           </Button>
@@ -213,6 +214,7 @@ const ProductCard = ({ product, onClick }) => (
     <h3 className="product-name">{product.name}</h3>
     <p className="product-price">${product.price.toFixed(2)}</p>
     <p className="product-description">{product.description}</p>
+    <p className="product-rating">Rating: {product.rating} ⭐</p>
     <Divider />
     <Button type="primary" onClick={onClick}>
       View Details
@@ -299,28 +301,43 @@ const CartModal = ({ visible, onClose, cartItems, onBuyNow }) => (
   >
     {cartItems.length > 0 ? (
       cartItems.map((item, index) => (
-        <div key={index} className="cart-item-detail">
-          <img src={item.image} alt={item.name} className="cart-item-image" />
+        <div
+          key={index}
+          className="cart-item"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <img
+            src={item.image}
+            alt={item.name}
+            className="cart-item-image"
+            style={{ width: "80px", height: "80px", marginRight: "20px" }}
+          />
           <div className="cart-item-info">
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <p>Price: ${item.price.toFixed(2)}</p>
-            <p>Size: {item.selectedSize}</p>
-            <p>Color: {item.selectedColor}</p>
-            <p>Rating: {item.rating} ⭐</p>
-            <Button type="primary" onClick={() => onBuyNow(item)}>
+            <h3 className="cart-item-name">{item.name}</h3>
+            <p className="cart-item-price">${item.price.toFixed(2)}</p>
+            <p className="cart-item-size">Size: {item.selectedSize}</p>
+            <p className="cart-item-color">Color: {item.selectedColor}</p>
+            <Button
+              type="primary"
+              onClick={() => onBuyNow(item)}
+              className="buy-now-button"
+            >
               Buy Now
             </Button>
           </div>
         </div>
       ))
     ) : (
-      <p>No items in your cart</p>
+      <p>Your cart is empty.</p>
     )}
   </Modal>
 );
 
-// Component for displaying order modal
+// Component for displaying ordered items in a modal
 const OrderModal = ({ visible, onClose, orderedItems }) => (
   <Modal
     title="Your Orders"
@@ -332,56 +349,65 @@ const OrderModal = ({ visible, onClose, orderedItems }) => (
   >
     {orderedItems.length > 0 ? (
       orderedItems.map((item, index) => (
-        <div key={index} className="order-item-detail">
-          <img src={item.image} alt={item.name} className="order-item-image" />
+        <div
+          key={index}
+          className="order-item"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <img
+            src={item.image}
+            alt={item.name}
+            className="order-item-image"
+            style={{ width: "80px", height: "80px", marginRight: "20px" }}
+          />
           <div className="order-item-info">
-            <h3>{item.name}</h3>
-            <p>Price: ${item.price.toFixed(2)}</p>
-            <p>Size: {item.selectedSize}</p>
-            <p>Color: {item.selectedColor}</p>
-            <p>Rating: {item.rating} ⭐</p>
+            <h3 className="order-item-name">{item.name}</h3>
+            <p className="order-item-price">${item.price.toFixed(2)}</p>
+            <p className="order-item-size">Size: {item.selectedSize}</p>
+            <p className="order-item-color">Color: {item.selectedColor}</p>
           </div>
         </div>
       ))
     ) : (
-      <p>No items ordered yet</p>
+      <p>You have no orders yet.</p>
     )}
   </Modal>
 );
 
-// Size selection component
+// Component for selecting sizes
 const SizeSelection = ({ sizes, selectedSize, setSelectedSize }) => (
-  <div>
-    <strong>Size:</strong>
-    <div className="size-selection">
-      {sizes.map((size, index) => (
-        <Button
-          key={index}
-          type={selectedSize === size ? "primary" : "default"}
-          onClick={() => setSelectedSize(size)}
-        >
-          {size}
-        </Button>
-      ))}
-    </div>
+  <div className="size-selection">
+    <h4>Select Size:</h4>
+    {sizes.map((size) => (
+      <Button
+        key={size}
+        onClick={() => setSelectedSize(size)}
+        className={`size-button ${selectedSize === size ? "active" : ""}`}
+      >
+        {size}
+      </Button>
+    ))}
   </div>
 );
 
-// Color selection component
+// Component for selecting colors
 const ColorSelection = ({ colors, selectedColor, setSelectedColor }) => (
-  <div>
-    <strong>Color:</strong>
-    <div className="color-selection">
-      {colors.map((color, index) => (
-        <Button
-          key={index}
-          type={selectedColor === color ? "primary" : "default"}
-          onClick={() => setSelectedColor(color)}
-        >
-          {color}
-        </Button>
-      ))}
-    </div>
+  <div className="color-selection">
+    <h4>Select Color:</h4>
+    {colors.map((color) => (
+      <Button
+        key={color}
+        onClick={() => setSelectedColor(color)}
+        className={`color-button ${selectedColor === color ? "active" : ""}`}
+        style={{ backgroundColor: color, color: "#fff" }}
+      >
+        {color}
+      </Button>
+    ))}
   </div>
 );
 
